@@ -131,7 +131,6 @@ class RegistrationTests(QualifierTestCase):
 
 
 class DeliveringTests(QualifierTestCase):
-
     async def test_handle_customer(self) -> None:
         id_ = STAFF_IDS[-1]
 

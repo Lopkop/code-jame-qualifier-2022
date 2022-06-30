@@ -31,4 +31,11 @@ class RestaurantManager:
             self.staff[request.scope['id']] = request
         elif request.scope['type'] == 'staff.offduty':
             self.staff.pop(request.scope['id'])
-        ...
+        else:
+            for key, value in self.staff.items():
+                if request.scope['speciality'] in value.scope['speciality']:
+                    selected_staff = self.staff[key]
+                    break
+            order = await request.receive()
+            await selected_staff.send(order)
+            await request.send(await selected_staff.receive())
